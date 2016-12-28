@@ -9,6 +9,46 @@
 
 namespace Registro;
 
+
+return array(
+     'controllers' => array(
+         'invokables' => array(
+             'Registro\Controller\Index' => 'Registro\Controller\IndexController',
+             //'Registro\Controller\Index' => Controller\IndexController::class
+         ),
+     ),
+
+     // The following section is new and should be added to your file
+     'router' => array(
+         'routes' => array(
+             'registro' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/registro[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Registro\Controller\Index',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+         ),
+     ),
+
+     'view_manager' => array(
+         'template_path_stack' => array(
+             'registro' => __DIR__ . '/../view',
+         ),
+     ),
+ );
+
+
+
+
+/*
 return array(
     'router' => array(
         'routes' => array(
@@ -90,3 +130,4 @@ return array(
         ),
     ),
 );
+*/

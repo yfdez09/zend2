@@ -11,11 +11,37 @@ namespace Registro\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Registro\Model\RegistroModel;
 
 class IndexController extends AbstractActionController
 {
+       
+    private $RegistroModel;
+    
+    public function __construct()
+    {
+     $this->RegistroModel = new RegistroModel();    
+    }
+        
     public function indexAction()
+    {   
+        $textoretorno = $this->RegistroModel->indexAction();
+        return new ViewModel(array('texto' => $textoretorno));
+    }
+    
+    public function createAction()
     {
         return new ViewModel();
     }
+    
+    public function updateAction($id)
+    {
+        return new ViewModel();
+    }
+    
+    public function deleteAction($id)
+    {
+        return new ViewModel();
+    }
+    
 }
