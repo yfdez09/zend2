@@ -36,4 +36,26 @@ class Module
             ),
         );
     }
+    
+    public function getServiceConfig(){
+
+    return [
+    'factories' => [
+            'Registro\Model\ClienteTable' => function($sm){
+                    $tableGateway = $sm->get('ClienteTableGateway');
+                    $table = new ClienteTable($tableGateway);
+                    return $table;
+	},
+	'ClienteTableGateway' => function($sm){
+		$dbApadter = $sm->get('Zend\Db\Apadter\Apadter');
+		$resultSetPrototype = new ResultSet();
+		$resultSetPrototype->setArrayObjectPrototype(new Cliente());
+		return new TableGateway('clientes', $dbAdapter, null, $resultSetPrototype);		
+	}
+        ]
+
+        ];
+    }
+
+    
 }
