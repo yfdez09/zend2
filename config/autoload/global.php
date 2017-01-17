@@ -12,18 +12,17 @@
  */
 
 return array(
-    'db' => [
-	'driver' => 'Pdo',
-	'dsn' => 'mysql:dbname:zend2-db;host=localhost',
-	'username' => 'root',
-	'password' => '',
-	'driver_option' => [
-	\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'' 
-	]
-     ]
-     'service_manager' => [
-	'factories' => [
-		'Zend\Db\Adapter\Adapter' => 'Zend\Db\ApadterServiceFactory'
-	]
-      ]   
+        'db' => array(
+            'driver' => 'Pdo',
+            'dsn' => 'mysql:dbname=corps;hostname=localhost',
+            'driver_option' => array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+            ),
+        ),
+
+        'service_manager' => array(
+            'factories' => array(
+                'Zend\Db\Adapter\Adapter' => 'Zend\Db\AdapterServiceFactory',
+            ),
+        ),
+
 );

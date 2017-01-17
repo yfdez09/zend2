@@ -1,3 +1,31 @@
 <h1>Registro<p></h1>
 
-<?php echo $this->texto?>
+<?
+$title = 'Registro';
+$this->headTitle($title);
+?>
+
+<h1><?=$this->escapeHtml($title)?></h1>
+<p>
+    <a href="<?=$this->url('registro', Array('action' => 'add'))?>"> Nuevo Registro</a>
+    
+ </p>
+ <table class="table">
+  <tr>
+      <td>Id</td>>
+      <td>Nome</td>
+      <td>Sobrenome</td>
+      <td>Edad</td>
+      <td>Sexo</td>
+      
+  </tr>
+  <?foreach ($this->registros as $registro):?>
+    <tr>
+        <td><?=$this->registro->id?></td>
+      <td><?=$this->registro->nome?></td>
+      <td>><?=$this->registro->sobrenome?></td>
+      <td>><?=$this->registro->edad?></td>
+      <td>><?=$this->registro->sexo?></td>
+      
+  </tr>
+ </table>

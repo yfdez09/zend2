@@ -11,32 +11,31 @@ namespace Registro\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-//use Registro\Model\RegistroModel;
+use Registro\Model\Registro;
+use Registro\Model\RegistroTable;
 use Registro\Form\RegistroForm;
+
 
 class IndexController extends AbstractActionController
 {       
-    //private $RegistroModel;
+    protected $registroTable;
     
     public function __construct()
     {
-     //$this->RegistroModel = new RegistroModel();    
+     
     }
         
     public function indexAction()
-    {   
-        //$textoretorno = $this->RegistroModel->indexAction();
-        $textoretorno = "hola index";
-        return new ViewModel(array('texto' => $textoretorno));
+    {         
+        return new ViewModel(array('registros' => $this->getRegistroTable()->fetchAll(),));
     }
     
-    public function createAction()
+    public function addAction()
     {
-        $formcreate = new RegistroForm('form');        
-        return new ViewModel(array('form' => $formcreate));
+       return new ViewModel(); 
     }
     
-    public function updateAction()
+    public function editAction()
     {
         return new ViewModel();
     }
@@ -46,4 +45,12 @@ class IndexController extends AbstractActionController
         return new ViewModel();
     }
     
+    public function getRegistroTable(){
+        if (!$this->registroTable){
+            $sm = $this->getServiceLocator();
+            $this->registroTable = $sm->get('Registro\Model\RegistroTable');
+        }
+        return $this->registroTable;
+        
+    }
 }
